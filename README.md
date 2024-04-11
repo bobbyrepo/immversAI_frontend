@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# Ticket Booking System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
 
-## Available Scripts
+The Ticket Booking System is a web application designed to facilitate booking tickets for various events or services. It includes features for filtering tickets by price, showing ticket details, and allowing users to book tickets by providing their name and email.
 
-In the project directory, you can run:
+## Features
+- The application displays a list of filtered tickets by price.
+- Users can view ticket information such as event name, ticket type, price, and availability status.
 
-### `npm start`
+### Show Ticket Details
+- Clicking on a details button navigates users to a details page where they can view more information about the ticket.
+- Details include ticket type, price, passenger name and availability status.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Book a Ticket
+- Users can book a ticket by providing their name and email address.
+- Upon successful booking, a confirmation message is displayed to the user.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Technologies Used
+- React.js: Frontend framework for building user interfaces.
+- React Router: For navigation between pages.
+- Axios: Used for making API calls to the backend.
+- Tailwind CSS: Provides utility classes for styling components.
 
-### `npm test`
+Before you can run this project, you need to set up some environment variables. Create an `.env` file in the project root and add the following variables:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- `REACT_APP_BASE_URL`: server link
 
-### `npm run build`
+## Usage
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To use the Warehouse Management App:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Run `git clone https://github.com/bobbyrepo/immversAI_frontend` to clone the repository to your local machine.
+2. Run `npm install` to install the project dependencies.
+3. Run `npm start` to start the development server.
+4. Open your browser and visit `http://localhost:3000`.
