@@ -14,11 +14,16 @@ const UserForm = ({
   const apiUrl = process.env.REACT_APP_BASE_URL;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!name || !email) {
-      setShowBookingForm(false);
+    if (!name.trim()) {
+      setErrors({ name: "Name is required" });
+      return;
+    }
+    if (!email.trim()) {
+      setErrors({ email: "Email is required" });
       return;
     }
     try {
@@ -32,6 +37,7 @@ const UserForm = ({
       setChanges(!change);
     } catch (error) {
       console.error(error);
+      notify("Error booking ticket. Please try again later.", "error");
     }
   };
 
@@ -56,9 +62,14 @@ const UserForm = ({
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:border-blue-500"
+              className={`border ${
+                errors.name ? "border-red-500" : "border-gray-300"
+              } rounded-md px-4 py-2 w-full focus:outline-none focus:border-blue-500`}
               placeholder="Enter name"
             />
+            {errors.name && (
+              <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+            )}
           </div>
           <div>
             <label htmlFor="email" className="text-gray-700 font-medium mb-2">
@@ -69,9 +80,14 @@ const UserForm = ({
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:border-blue-500"
+              className={`border ${
+                errors.email ? "border-red-500" : "border-gray-300"
+              } rounded-md px-4 py-2 w-full focus:outline-none focus:border-blue-500`}
               placeholder="Enter email"
             />
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+            )}
           </div>
           <button
             type="submit"
