@@ -1,77 +1,75 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import UserForm from "./UserForm";
+import { successNotify } from "../utils/Notification";
 
 function Ticketcard({ item, changes, setChanges }) {
   const bookedBy = item.bookedBy;
+  const navigate = useNavigate();
   const apiUrl = process.env.REACT_APP_BASE_URL;
-  const [name, setName] = useState("");
+  const [showBookingForm, setShowBookingForm] = useState(false);
+
+  //   const [name, setName] = useState("");
 
   const bookTicket = async (id) => {
-    try {
-      const response = await axios.put(`${apiUrl}/api/tickets/${id}`, {
-        bookedBy: localStorage.getItem("userID"),
-      });
-      setChanges(!changes);
-    } catch (error) {
-      console.error(error);
+    if (!item.booked) {
+      setShowBookingForm(true);
     }
   };
 
-  const deleteTicket = async (id) => {
-    try {
-      const response = await axios.delete(`${apiUrl}/api/tickets/${id}`, {
-        bookedBy: localStorage.getItem("userID"),
-      });
-      setChanges(!changes);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  //   useEffect(() => {
+  //     async function getUserData() {
+  //       try {
+  //         const response = await axios.get(`${apiUrl}/api/users/${bookedBy}`);
+  //         setName(response.data.name);
+  //       } catch (error) {
+  //         console.error(error);
+  //         setName("");
+  //       }
+  //     }
+  //     getUserData();
+  //   });
 
-  useEffect(() => {
-    async function getUserData() {
-      try {
-        const response = await axios.get(`${apiUrl}/api/users/${bookedBy}`);
-        setName(response.data.name);
-      } catch (error) {
-        console.error(error);
-        setName("");
-      }
-    }
-    getUserData();
-  });
-
+  function notify(msg) {
+    successNotify(msg);
+  }
   return (
-    <div key={item._id} className="flex flex-col gap-1">
-      <div
-        onClick={() => bookTicket(item._id)}
-        className={`flex flex-col w-[200px] h-[130px] px-2   border-2 rounded-xl ${
-          !item.booked
-            ? "bg-white border-blue-300  hover:bg-blue-300"
-            : " bg-red-200 border-red-200"
-        }`}
-      >
-        <h1 className="font-normal text-sm">creator:</h1>
-        <h1 className="font-medium">{item.creatorName.toUpperCase()}</h1>
+    <>
+      {showBookingForm && (
+        <UserForm
+          item={item}
+          id={item._id}
+          changes={changes}
+          setChanges={setChanges}
+          showBookingForm={showBookingForm}
+          setShowBookingForm={setShowBookingForm}
+          notify={notify}
+        />
+      )}
 
-        <h1 className="text-center text-2xl font-bold">{item.price} Rs</h1>
-        {bookedBy && <h1 className="font-normal text-sm">booked:</h1>}
-        <h1 className="font-medium">{name}</h1>
-      </div>
-      <div className="flex justify-between px-3">
-        <button className="px-2 py-1 bg-blue-400 text-white rounded">
-          Details
-        </button>
-        {item.creatorID == localStorage.getItem("userID") && (
+      <div key={item._id} className="flex flex-col gap-1">
+        <div
+          onClick={() => bookTicket(item._id)}
+          className={`flex flex-col w-[200px] h-[90px] px-2   border-2 rounded-xl ${
+            !item.booked
+              ? "bg-white border-blue-300  hover:bg-blue-300"
+              : " bg-red-200 border-red-200"
+          }`}
+        >
+          <h1>{item.seatNo}</h1>
+          <h1 className="text-center text-2xl font-bold">{item.price} Rs</h1>
+        </div>
+        <div className="flex justify-between px-3">
           <button
-            onClick={() => deleteTicket(item._id)}
-            className="px-2 py-1 bg-red-400 text-white rounded"
+            onClick={() => navigate(`/details/${item._id}`)}
+            className="px-2 py-1 bg-blue-400 text-white rounded"
           >
-            Delete
+            Details
           </button>
-        )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
