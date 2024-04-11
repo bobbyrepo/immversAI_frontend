@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The Ticket Booking System is a web application designed to facilitate booking tickets for various events or services. It includes features for filtering tickets by price, showing ticket details, and allowing users to book tickets by providing their name and email.
+The Ticket Booking System is a web application designed to facilitate booking tickets. It includes features for filtering tickets by price, showing ticket details, and allowing users to book tickets by providing their name and email.
 
 ## Features
 - The application displays a list of filtered tickets by price.
